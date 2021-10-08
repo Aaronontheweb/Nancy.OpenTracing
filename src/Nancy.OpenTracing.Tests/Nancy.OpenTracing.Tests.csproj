@@ -1,6 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\common.props" />
-
   <PropertyGroup>    
     <TargetFramework>$(TestsNetCoreFramework)</TargetFramework>
   </PropertyGroup>
@@ -12,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Petabridge.Library\Petabridge.Library.csproj" />
+    <ProjectReference Include="..\Nancy.OpenTracing\Nancy.OpenTracing.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,5 @@
-# Petabridge.Library
-
-Update this readme file with your details.
+# Nancy.OpenTracing
+This library adds [OpenTracing middleware](https://opentracing.io/) for [NancyFX](http://nancyfx.org/).
 
 ## Supported Commands
 This project supports a wide variety of commands, all of which can be listed via:
