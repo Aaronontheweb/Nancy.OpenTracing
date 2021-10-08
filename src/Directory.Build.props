@@ -2,8 +2,12 @@
   <PropertyGroup>
     <Copyright>Copyright © 2015-2021 Petabridge</Copyright>
     <Authors>Aaronontheweb</Authors>
-    <VersionPrefix>0.1.0</VersionPrefix>
-    <PackageReleaseNotes>Fist implementation of Nancy.OpenTracing, designed to work with Nancy 1.4.1 and OpenTracing 0.12.1.</PackageReleaseNotes>
+    <VersionPrefix>0.1.1</VersionPrefix>
+    <PackageReleaseNotes>Modified the default HTTP span name to be
+```
+HTTP {METHOD} {PATH}
+```
+So spans should now be reported as "HTTP POST /myapi/v1/{entityId}"</PackageReleaseNotes>
     <PackageIconUrl>
     </PackageIconUrl>
     <PackageProjectUrl>

@@ -16,7 +16,7 @@ namespace Nancy.OpenTracing
         
         public static readonly Func<NancyContext, string> DefaultOperationNameFormatter = context =>
         {
-            return $"HTTP {context.Request.Method} {context.ResolvedRoute}";
+            return $"HTTP {context.Request.Method} {context.Request.Path}";
         };
 
         /// <summary>
