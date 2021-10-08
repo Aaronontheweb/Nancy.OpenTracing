@@ -24,10 +24,14 @@ namespace Nancy.OpenTracing
         /// </summary>
         /// <param name="tracer">The tracer that will be used to correlate all HTTP activity.</param>
         /// <param name="operationNameFormatter">Used to format the names of HTTP methods into <see cref="ISpan"/> operation names.</param>
-        public OpenTracingBootstrapper(ITracer tracer, Func<NancyContext, string> operationNameFormatter = null)
+        public OpenTracingBootstrapper(ITracer tracer, Func<NancyContext, string> operationNameFormatter)
         {
             Tracer = tracer;
-            _operationNameFormatter = operationNameFormatter;
+            _operationNameFormatter = operationNameFormatter ?? DefaultOperationNameFormatter;
+        }
+        
+        public OpenTracingBootstrapper(ITracer tracer) : this(tracer, DefaultOperationNameFormatter)
+        {
         }
 
         /// <summary>
@@ -102,6 +106,9 @@ namespace Nancy.OpenTracing
 
                 return null;
             };
+
+            // make the ITracer available for use inside modules
+            container.Register<ITracer>(Tracer);
             
             base.ApplicationStartup(container, pipelines);
         }
