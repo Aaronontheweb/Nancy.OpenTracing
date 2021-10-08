@@ -1,6 +1,26 @@
 # Nancy.OpenTracing
 This library adds [OpenTracing middleware](https://opentracing.io/) for [NancyFX](http://nancyfx.org/).
 
+To use this class, simply inherit from the `OpenTracingBootstrap` base class in your Nancy startup and create an `ITracer` instance to pass into it:
+
+```csharp
+ // arrange
+  var mockTracer = new MockTracer();
+  var bootstrapper = new OpenTracingBootstrapper(mockTracer);
+  var browser = new Browser(bootstrapper);
+
+  // act
+  var resp = browser.Get("/test");
+
+  // assert
+  Assert.Equal("hello", resp.Body.AsString());
+  var finishedSpans = mockTracer.FinishedSpans();
+  finishedSpans.Count.Should().Be(2); // two spans expected
+
+  // both spans should be part of the same trace
+  finishedSpans.Select(x => x.Context.TraceId).Distinct().Count().Should().Be(1);
+```
+
 ## Supported Commands
 This project supports a wide variety of commands, all of which can be listed via:
 
